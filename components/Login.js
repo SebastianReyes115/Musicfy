@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Image, StyleSheet, TouchableOpacity } from 'react-native'
-import { Container, Header, Content, Form, Input, Label, Left, Icon, Body, Title, Right, Text, View, Button } from 'native-base';
+import { Image, StyleSheet, TouchableOpacity, Button } from 'react-native'
+import { Container, Header, Content, Form, Input, Label, Left, Icon, Body, Title, Right, Text, View, Item } from 'native-base';
 import { getTheme, StyleProvider } from 'native-base'
 import customVariables from '../theme/variables'
 import Axios from 'axios'
@@ -54,15 +54,21 @@ export default function Login() {
                         </Label>
                         <Input style={styles.input} placeholder='UserName123' value={userName} onChangeText={setUserName} />
                         <Label />
-                        <Label style={styles.label}>
-                            Contraseña
-                        <Icon name='lock-closed' />
-                        </Label>
-                        <Input secureTextEntry={true} style={styles.input} placeholder='**********' value={contrasena} onChangeText={setContrasena} />
+                            <Left>
+                                <Label style={styles.label}>
+                                Contraseña
+                            </Label>
+
+                            </Left>
+                            <Body />
+                            <Right>
+                                <Icon style={{fontSize: 30,}} name='lock-closed' />
+                            </Right>
+                        
+                            <Input secureTextEntry={true} style={styles.input} placeholder='**********' value={contrasena} onChangeText={setContrasena} />
+
                         <Label />
-                        <Button warning full rounded onPress={handleSubmit}>
-                            <Text>Login</Text>
-                        </Button>
+                        <Button onPress={handleSubmit} title='Iniciar Sesión'/>
                         <Label />
                         <TouchableOpacity>
                             <Text style={styles.forgot}>¿Eres nuevo? Registrate aqui!</Text>
@@ -101,7 +107,8 @@ const styles = StyleSheet.create({
         color: '#61dafb',
         fontWeight: 'bold',
         fontSize: 20,
-        textAlign: 'center'
+        textAlign: 'center',
+        marginRight: 50
     },
     input: {
         color: '#fff'
