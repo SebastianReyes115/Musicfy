@@ -6,12 +6,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { getTheme, StyleProvider } from 'native-base'
 import customVariables from '../theme/variables'
 import Axios from 'axios'
-import Intro from './Introduction'
+import Home from './Home'
 
-function HomeScreen({ navigation }) {
+function LoginScreen({ navigation }) {
     const [userName, setUserName] = useState('')
     const [contrasena, setContrasena] = useState('')
-    const [validate, setValidate] = useState(false)
 
     const handleSubmit = async () => {
         let formData = new FormData();
@@ -27,16 +26,13 @@ function HomeScreen({ navigation }) {
         })
             .then((response) => {
                 if (response.data.login == true) {
-                    alert("Logeado");
-                    
-                    navigation.navigate('Introduction')
+                    navigation.navigate('Home')
                     console.log('Response Login', response)
                 } else {
                     alert("Datos Incorrectos");
                 }
             })
             .catch(error => {
-                navigation.navigate('Introduction');
                 console.log('Error en el login', error)
             })
         console.log('props Login', userName)
@@ -60,21 +56,13 @@ function HomeScreen({ navigation }) {
                         </Label>
                         <Input style={styles.input} placeholder='UserName123' value={userName} onChangeText={setUserName} />
                         <Label />
-                        <Left>
-                            <Label style={styles.label}>
-                                Contraseña
-                            </Label>
-
-                        </Left>
-                        <Body />
-                        <Right>
-                            <Icon style={{ fontSize: 30, }} name='lock-closed' />
-                        </Right>
-
+                        <Label style={styles.label}>
+                            Contraseña
+                                <Icon style={{ fontSize: 30, }} name='lock-closed' />
+                        </Label>
                         <Input secureTextEntry={true} style={styles.input} placeholder='**********' value={contrasena} onChangeText={setContrasena} />
-
                         <Label />
-                        <Button onPress={handleSubmit} title='Iniciar Sesión' />
+                        <Button color='orange' onPress={handleSubmit} title='Iniciar Sesión' />
                         <Label />
                         <TouchableOpacity>
                             <Text style={styles.forgot}>¿Eres nuevo? Registrate aqui!</Text>
@@ -85,18 +73,21 @@ function HomeScreen({ navigation }) {
         </StyleProvider>
     );
 }
-function IntroductionScreen({ navigation }) {
+
+function HomeScreen({ navigation }) {
     return (
-        <Intro />
-    );
+        <Home />
+    )
 }
-const Stack = createStackNavigator();
+
+const Stack = createStackNavigator()
+
 export default function Login() {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Home">
-                <Stack.Screen name="Home" component={HomeScreen}></Stack.Screen>
-                <Stack.Screen name="Introduction" component={IntroductionScreen} options={{title:"Bienvenido ", headerStyle:{backgroundColor:"black"}, headerTintColor:"white"}}></Stack.Screen>
+            <Stack.Navigator initialRouteName="Login">
+                <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}></Stack.Screen>
+                <Stack.Screen name="Home" component={HomeScreen} options={{ title: "Bienvenido ", headerStyle: { backgroundColor: "black" }, headerTintColor: "white" }}></Stack.Screen>
             </Stack.Navigator>
         </NavigationContainer>
     )
@@ -129,7 +120,7 @@ const styles = StyleSheet.create({
         color: '#61dafb',
         fontWeight: 'bold',
         fontSize: 20,
-        textAlign: 'center',
+        //textAlign: 'center',
         marginRight: 50
     },
     input: {
