@@ -8,10 +8,10 @@ import customVariables from '../theme/variables'
 import Axios from 'axios'
 import Intro from './Introduction'
 
-function HomeScreen({navigation}){
+function HomeScreen({ navigation }) {
     const [userName, setUserName] = useState('')
     const [contrasena, setContrasena] = useState('')
-    const [validate, setValidate]=useState(false)
+    const [validate, setValidate] = useState(false)
 
     const handleSubmit = async () => {
         let formData = new FormData();
@@ -21,14 +21,14 @@ function HomeScreen({navigation}){
 
         await Axios({
             method: 'post',
-            url: 'http://192.168.1.74/musicfy/database/api.php',
+            url: 'http://192.168.1.75/musicfy/database/api.php',
             data: formData,
             config: { headers: { 'Content-Type': 'multipart/form-data' } }
         })
             .then((response) => {
                 if (response.data.login == true) {
                     alert("Logeado");
-                    setValidate(true)
+                    
                     navigation.navigate('Introduction')
                     console.log('Response Login', response)
                 } else {
@@ -59,21 +59,21 @@ function HomeScreen({navigation}){
                         </Label>
                         <Input style={styles.input} placeholder='UserName123' value={userName} onChangeText={setUserName} />
                         <Label />
-                            <Left>
-                                <Label style={styles.label}>
+                        <Left>
+                            <Label style={styles.label}>
                                 Contraseña
                             </Label>
 
-                            </Left>
-                            <Body />
-                            <Right>
-                                <Icon style={{fontSize: 30,}} name='lock-closed' />
-                            </Right>
-                        
-                            <Input secureTextEntry={true} style={styles.input} placeholder='**********' value={contrasena} onChangeText={setContrasena} />
+                        </Left>
+                        <Body />
+                        <Right>
+                            <Icon style={{ fontSize: 30, }} name='lock-closed' />
+                        </Right>
+
+                        <Input secureTextEntry={true} style={styles.input} placeholder='**********' value={contrasena} onChangeText={setContrasena} />
 
                         <Label />
-                        <Button onPress={handleSubmit} title='Iniciar Sesión'/>
+                        <Button onPress={handleSubmit} title='Iniciar Sesión' />
                         <Label />
                         <TouchableOpacity>
                             <Text style={styles.forgot}>¿Eres nuevo? Registrate aqui!</Text>
@@ -84,21 +84,22 @@ function HomeScreen({navigation}){
         </StyleProvider>
     );
 }
-function IntroductionScreen({navigation}){
-    return(
-<Intro></Intro>
+function IntroductionScreen({ navigation }) {
+    return (
+        alert("Hola")
     );
 }
 const Stack = createStackNavigator();
 export default function Login() {
-    <NavigationContainer>
-        <Stack.Navigator>
-            <Stack.Screen name="Home" component={HomeScreen}></Stack.Screen>
-        </Stack.Navigator>
-        <Stack.Navigator>
-            <Stack.Screen name="Introduction" component={IntroductionScreen}></Stack.Screen>
-        </Stack.Navigator>
-    </NavigationContainer>
+    return (
+
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName="Home">
+                <Stack.Screen name="Home" component={HomeScreen}></Stack.Screen>
+                <Stack.Screen name="Introduction" component={IntroductionScreen}></Stack.Screen>
+            </Stack.Navigator>
+        </NavigationContainer>
+    )
 }
 
 const styles = StyleSheet.create({
