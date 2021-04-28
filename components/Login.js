@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { Image, StyleSheet, TouchableOpacity, Button } from 'react-native'
 import { Container, Header, Content, Form, Input, Label, Left, Icon, Body, Title, Right, Text, View, Item } from 'native-base';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { getTheme, StyleProvider } from 'native-base'
 import customVariables from '../theme/variables'
 import Axios from 'axios'
+import Intro from './Introduction'
 
-export default function Login() {
+function HomeScreen({navigation}){
     const [userName, setUserName] = useState('')
     const [contrasena, setContrasena] = useState('')
+    const [validate, setValidate]=useState(false)
 
     const handleSubmit = async () => {
         let formData = new FormData();
@@ -24,6 +28,8 @@ export default function Login() {
             .then((response) => {
                 if (response.data.login == true) {
                     alert("Logeado");
+                    setValidate(true)
+                    navigation.navigate('Introduction')
                     console.log('Response Login', response)
                 } else {
                     alert("Datos Incorrectos");
@@ -34,7 +40,6 @@ export default function Login() {
             })
         console.log('props Login', userName)
     }
-
     return (
         <StyleProvider style={getTheme(customVariables)}>
             <Container style={styles.container}>
@@ -78,6 +83,22 @@ export default function Login() {
             </Container>
         </StyleProvider>
     );
+}
+function IntroductionScreen({navigation}){
+    return(
+<Intro></Intro>
+    );
+}
+const Stack = createStackNavigator();
+export default function Login() {
+    <NavigationContainer>
+        <Stack.Navigator>
+            <Stack.Screen name="Home" component={HomeScreen}></Stack.Screen>
+        </Stack.Navigator>
+        <Stack.Navigator>
+            <Stack.Screen name="Introduction" component={IntroductionScreen}></Stack.Screen>
+        </Stack.Navigator>
+    </NavigationContainer>
 }
 
 const styles = StyleSheet.create({
