@@ -86,13 +86,12 @@ function HomeScreen({ navigation }) {
 }
 function IntroductionScreen({ navigation }) {
     return (
-        alert("Hola")
+        <Intro />
     );
 }
 const Stack = createStackNavigator();
 export default function Login() {
     return (
-
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Home">
                 <Stack.Screen name="Home" component={HomeScreen}></Stack.Screen>
