@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Image, StyleSheet, TouchableOpacity } from 'react-native'
-//import { Container, Header, Content, Form, Input, Label, Left, Icon, Body, Title, Right, Text, View, Item } from 'native-base';
 import { Container, Header, Title, Content, Footer, Button, FooterTab, Left, Right, Body, Icon, Text } from 'native-base';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -11,18 +10,8 @@ import Axios from 'axios'
 
 export default function Introduction(){
     return(
-        <Container>
-        <Header>
-          <Left>
-            <Button transparent>
-              <Icon name='menu' />
-            </Button>
-          </Left>
-          <Body>
-            <Title>Header</Title>
-          </Body>
-          <Right />
-        </Header>
+      <StyleProvider style={getTheme(customVariables)}>
+ <Container>
         <Content>
           <Text>
             This is Content Section
@@ -30,11 +19,21 @@ export default function Introduction(){
         </Content>
         <Footer>
           <FooterTab>
-            <Button full>
-              <Text>Footer</Text>
+            <Button vertical>
+              <Icon name="home" type="Entypo" />
+              <Text>Inicio</Text>
+            </Button>
+            <Button vertical>
+              <Icon name="magnifying-glass" type="Entypo" />
+              <Text>Buscar</Text>
+            </Button>
+            <Button vertical active>
+              <Icon active name="folder-music" type="Entypo" />
+              <Text>Biblioteca</Text>
             </Button>
           </FooterTab>
         </Footer>
       </Container>
+      </StyleProvider>
     );
 }

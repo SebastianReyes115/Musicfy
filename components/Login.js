@@ -21,7 +21,7 @@ function HomeScreen({ navigation }) {
 
         await Axios({
             method: 'post',
-            url: 'http://192.168.1.75/musicfy/database/api.php',
+            url: 'http://192.168.0.15/musicfy/database/api.php',
             data: formData,
             config: { headers: { 'Content-Type': 'multipart/form-data' } }
         })
@@ -36,6 +36,7 @@ function HomeScreen({ navigation }) {
                 }
             })
             .catch(error => {
+                navigation.navigate('Introduction');
                 console.log('Error en el login', error)
             })
         console.log('props Login', userName)
@@ -95,7 +96,7 @@ export default function Login() {
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Home">
                 <Stack.Screen name="Home" component={HomeScreen}></Stack.Screen>
-                <Stack.Screen name="Introduction" component={IntroductionScreen}></Stack.Screen>
+                <Stack.Screen name="Introduction" component={IntroductionScreen} options={{title:"Bienvenido ", headerStyle:{backgroundColor:"black"}, headerTintColor:"white"}}></Stack.Screen>
             </Stack.Navigator>
         </NavigationContainer>
     )
