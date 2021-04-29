@@ -7,6 +7,7 @@ import { getTheme, StyleProvider } from 'native-base'
 import customVariables from '../theme/variables'
 import Axios from 'axios'
 import Home from './Home'
+import Registro from './SignUp'
 
 function LoginScreen({ navigation }) {
     const [userName, setUserName] = useState('')
@@ -20,7 +21,7 @@ function LoginScreen({ navigation }) {
 
         await Axios({
             method: 'post',
-            url: 'http://192.168.0.15/musicfy/database/api.php',
+            url: 'http://192.168.1.75/musicfy/database/api.php',
             data: formData,
             config: { headers: { 'Content-Type': 'multipart/form-data' } }
         })
@@ -64,7 +65,7 @@ function LoginScreen({ navigation }) {
                         <Label />
                         <Button color='orange' onPress={handleSubmit} title='Iniciar Sesión' />
                         <Label />
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('Registro')}>
                             <Text style={styles.forgot}>¿Eres nuevo? Registrate aqui!</Text>
                         </TouchableOpacity>
                     </Form>
@@ -80,6 +81,12 @@ function HomeScreen({ navigation }) {
     )
 }
 
+function SignUp( {navigation} ) {
+    return(
+        <Registro />
+    )
+}
+
 const Stack = createStackNavigator()
 
 export default function Login() {
@@ -88,6 +95,7 @@ export default function Login() {
             <Stack.Navigator initialRouteName="Login">
                 <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}></Stack.Screen>
                 <Stack.Screen name="Home" component={HomeScreen} options={{ title: "Bienvenido ", headerStyle: { backgroundColor: "black" }, headerTintColor: "white" }}></Stack.Screen>
+                <Stack.Screen name="Registro" component = {SignUp} options={{headerShown: false}}></Stack.Screen>
             </Stack.Navigator>
         </NavigationContainer>
     )
