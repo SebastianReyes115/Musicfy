@@ -51,10 +51,12 @@ function LoginScreen({ navigation }) {
                         <Label style={styles.title}>Musicfy</Label>
                     </View>
                     <Form style={styles.form}>
-                        <Label style={styles.label}>
-                            Usuario
-                        <Icon name='person' />
-                        </Label>
+                        <Item>
+                            <Label style={styles.label}>
+                                Usuario
+                            </Label>
+                            <Icon name='person' />
+                        </Item>
                         <Input style={styles.input} placeholder='UserName123' value={userName} onChangeText={setUserName} />
                         <Label />
                         <Label style={styles.label}>
