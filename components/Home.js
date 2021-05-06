@@ -53,10 +53,7 @@ export default function Home() {
           inactiveTintColor: 'gray',
         }}
         >
-          <Tab.Screen name="Inicio" component={InicoScreen} options={{title:'Inicio',headerStyle: { backgroundColor: "black" },headerTintColor: "white" ,
-        headerLeft: () => {
-          return null;
-        }}}></Tab.Screen>
+          <Tab.Screen name="Inicio" component={InicoScreen} options={{title:'Inicio',headerStyle: { backgroundColor: "black" },headerTintColor: "white"}} options={{headerLeft: null}}></Tab.Screen>
           <Tab.Screen name="Buscar" component={BuscarScreen} options={{title:'Buscar', headerStyle: { backgroundColor: "black" }, headerTintColor: "white" }}></Tab.Screen>
           <Tab.Screen name="Biblioteca" component={BibliotecaScreen} options={{title:'Biblioteca', headerStyle: { backgroundColor: "black" }, headerTintColor: "white" }}></Tab.Screen>
         </Tab.Navigator>
