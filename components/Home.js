@@ -23,8 +23,7 @@ const Tab = createBottomTabNavigator();
 export default function Home() {
   return (
     <StyleProvider style={getTheme(customVariables)}>
-      <NavigationContainer>
-        <Tab.Navigator
+              <Tab.Navigator
          screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
@@ -47,7 +46,6 @@ export default function Home() {
           <Tab.Screen name="Inicio" component={InicoScreen}></Tab.Screen>
           <Tab.Screen name="Buscar" component={BuscarScreen}></Tab.Screen>
         </Tab.Navigator>
-      </NavigationContainer>
     </StyleProvider>
   );
 }
