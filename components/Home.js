@@ -35,12 +35,12 @@ export default function Home() {
             let iconName;
 
             if (route.name === 'Inicio') {
-              iconName = focused ? 'shop' : 'shop';
+              iconName = focused ? 'book-outline' : 'book-outline';
             } else if (route.name === 'Buscar') {
-              iconName = focused ? 'magnifying-glass' : 'magnifying-glass';
+              iconName = focused ? 'search-outline' : 'search-outline';
             }
             if(route.name==='Biblioteca'){
-              iconName= focused ? 'folder-music' : 'folder-music';
+              iconName= focused ? 'archive-outline' : 'archive-outline';
             }
 
             // You can return any component that you like here!
