@@ -15,7 +15,7 @@ function LoginScreen({ navigation }) {
 
     const handleSubmit = async () => {
         let formData = new FormData();
-        formData.append('login', 'loginQuery')
+        formData.append('option', 'loginQuery')
         formData.append('userName', userName)
         formData.append('contrasena', contrasena)
 

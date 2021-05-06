@@ -10,7 +10,7 @@ try {
 }
 
 //LOGIN
-if ($_POST['login'] == 'loginQuery') {
+if ($_POST['option'] == 'loginQuery') {
     $sql = "SELECT * FROM usuario WHERE userName = :userName AND contrasena = :contrasena";
     $statement = $bd->prepare($sql);
 
@@ -26,6 +26,7 @@ if ($_POST['login'] == 'loginQuery') {
 }
 
 //REGISTRO
+/*
 if ($_POST['signup'] == 'signupQuery') {
     $sql = "INSERT INTO usuario (nombre, userName, email, contrasena) VALUES (:nombre, :userName, :email, :contrasena)";
     $statement = $bd->prepare($sql);
@@ -42,4 +43,4 @@ if ($_POST['signup'] == 'signupQuery') {
         echo json_encode(array('insert' => false));
     }
 }
-
+*/
