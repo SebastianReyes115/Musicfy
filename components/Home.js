@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import Buscar from './Buscar'
+import Biblioteca from './Biblioteca'
 
 function InicoScreen(){
   return(
@@ -16,6 +17,11 @@ function InicoScreen(){
 function BuscarScreen(){
   return(
 <Buscar></Buscar>
+  );
+}
+function BibliotecaScreen(){
+  return(
+    <Biblioteca></Biblioteca>
   );
 }
 const Tab = createBottomTabNavigator();
@@ -29,9 +35,12 @@ export default function Home() {
             let iconName;
 
             if (route.name === 'Inicio') {
-              iconName = focused ? 'ios-information-circle' : 'ios-information-circle-outline';
+              iconName = focused ? 'shop' : 'shop';
             } else if (route.name === 'Buscar') {
-              iconName = focused ? 'ios-list-box' : 'ios-list';
+              iconName = focused ? 'magnifying-glass' : 'magnifying-glass';
+            }
+            if(route.name==='Biblioteca'){
+              iconName= focused ? 'folder-music' : 'folder-music';
             }
 
             // You can return any component that you like here!
@@ -45,6 +54,7 @@ export default function Home() {
         >
           <Tab.Screen name="Inicio" component={InicoScreen}></Tab.Screen>
           <Tab.Screen name="Buscar" component={BuscarScreen}></Tab.Screen>
+          <Tab.Screen name="Biblioteca" component={BibliotecaScreen}></Tab.Screen>
         </Tab.Navigator>
     </StyleProvider>
   );
