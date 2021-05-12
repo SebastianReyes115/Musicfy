@@ -5,6 +5,7 @@ import customVariables from '../theme/variables'
 import { View, Button } from 'react-native'
 import { Audio } from 'expo-av';
 
+const [pauseSong, setPauseSong]=useState(false);
 export default function inicio(){
     const [sound, setSound] = React.useState();
 
@@ -27,11 +28,18 @@ export default function inicio(){
   }, [sound]);
 async function pauseSound(){
     await sound.pauseAsync();
+    setPauseSong(true);
+}
+async function replaySound(){
+  await sound.replaySound();
 }
   return (
     <View>
       <Button title="Play Sound" onPress={playSound} />
       <Button title="Pause" onPress={pauseSound}></Button>
+      {pauseSong 
+      ? <Button title="continuar" onPress={replaySound} ></Button>
+    : <Button></Button>}
     </View>
   )
 }
