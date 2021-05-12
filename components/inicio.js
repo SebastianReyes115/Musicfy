@@ -11,7 +11,7 @@ export default function inicio(){
   async function playSound() {
     console.log('Loading Sound');
     const { sound } = await Audio.Sound.createAsync(
-       require('./assets/like.mp3')
+       require('../assets/like.mp3')
     );
     setSound(sound);
 
@@ -27,8 +27,20 @@ export default function inicio(){
   }, [sound]);
 
   return (
-    <View style={styles.container}>
+      <Container>
+          <Content>
+          <View style={styles.container}>
       <Button title="Play Sound" onPress={playSound} />
     </View>
+          </Content>
+      </Container>
   );
 }
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      backgroundColor: '#ecf0f1',
+      padding: 10,
+    },
+  });
