@@ -10,18 +10,18 @@ import Buscar from './Buscar'
 import Biblioteca from './Biblioteca'
 import { HeaderBackButton } from '@react-navigation/stack';
 
-function InicoScreen(){
-  return(
+function InicoScreen() {
+  return (
     <Inicio></Inicio>
   );
 }
-function BuscarScreen(){
-  return(
-<Buscar></Buscar>
+function BuscarScreen() {
+  return (
+    <Buscar></Buscar>
   );
 }
-function BibliotecaScreen(){
-  return(
+function BibliotecaScreen() {
+  return (
     <Biblioteca></Biblioteca>
   );
 }
@@ -30,8 +30,8 @@ const Tab = createBottomTabNavigator();
 export default function Home() {
   return (
     <StyleProvider style={getTheme(customVariables)}>
-              <Tab.Navigator
-         screenOptions={({ route }) => ({
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
@@ -40,8 +40,8 @@ export default function Home() {
             } else if (route.name === 'Buscar') {
               iconName = focused ? 'search-outline' : 'search-outline';
             }
-            if(route.name==='Biblioteca'){
-              iconName= focused ? 'archive-outline' : 'archive-outline';
+            if (route.name === 'Biblioteca') {
+              iconName = focused ? 'archive-outline' : 'archive-outline';
             }
 
             // You can return any component that you like here!
@@ -52,11 +52,11 @@ export default function Home() {
           activeTintColor: 'tomato',
           inactiveTintColor: 'gray',
         }}
-        >
-          <Tab.Screen name="Inicio" component={InicoScreen} options={{title:'Inicio',headerStyle: { backgroundColor: "black" },headerTintColor: "white"}} options={{headerLeft: null}}></Tab.Screen>
-          <Tab.Screen name="Buscar" component={BuscarScreen} options={{headerShown: false, title:'Buscar', headerStyle: { backgroundColor: "black" }, headerTintColor: "white"}}></Tab.Screen>
-          <Tab.Screen name="Biblioteca" component={BibliotecaScreen} options={{title:'Biblioteca', headerStyle: { backgroundColor: "black" }, headerTintColor: "white" }}></Tab.Screen>
-        </Tab.Navigator>
+      >
+        <Tab.Screen name="Inicio" component={InicoScreen} options={{ title: 'Inicio', headerStyle: { backgroundColor: "black" }, headerTintColor: "white" }} options={{ headerLeft: null }}></Tab.Screen>
+        <Tab.Screen name="Buscar" component={BuscarScreen} options={{ headerShown: false, title: 'Buscar', headerStyle: { backgroundColor: "black" }, headerTintColor: "white" }}></Tab.Screen>
+        <Tab.Screen name="Biblioteca" component={BibliotecaScreen} options={{ title: 'Biblioteca', headerStyle: { backgroundColor: "black" }, headerTintColor: "white" }}></Tab.Screen>
+      </Tab.Navigator>
     </StyleProvider>
   );
 }

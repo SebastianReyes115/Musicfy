@@ -87,7 +87,7 @@ function SignUp( {navigation} ) {
     return(
         <Registro />
     )
-}
+}       
 
 const Stack = createStackNavigator()
 
