@@ -55,14 +55,18 @@ function LoginScreen({ navigation }) {
                             <Label style={styles.label}>
                                 Usuario
                             </Label>
+                            <Label>                                     </Label>
                             <Icon name='person' />
                         </Item>
                         <Input style={styles.input} placeholder='UserName123' value={userName} onChangeText={setUserName} />
                         <Label />
-                        <Label style={styles.label}>
-                            Contraseña
-                                <Icon style={{ fontSize: 30, }} name='lock-closed' />
-                        </Label>
+                        <Item>
+                            <Label style={styles.label}>
+                                Contraseña
+                            </Label>
+                            <Label>                             </Label>
+                            <Icon style={{ fontSize: 30, }} name='lock-closed' />
+                        </Item>
                         <Input secureTextEntry={true} style={styles.input} placeholder='**********' value={contrasena} onChangeText={setContrasena} />
                         <Label />
                         <Button color='orange' onPress={handleSubmit} title='Iniciar Sesión' />
@@ -96,7 +100,7 @@ export default function Login() {
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Login">
                 <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}></Stack.Screen>
-                <Stack.Screen name="Home" component={HomeScreen} options={{ title: "Bienvenido ", headerStyle: { backgroundColor: "black" }, headerTintColor: "white" }}></Stack.Screen>
+                <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}></Stack.Screen>
                 <Stack.Screen name="Registro" component = {SignUp} options={{headerShown: false}}></Stack.Screen>
             </Stack.Navigator>
         </NavigationContainer>

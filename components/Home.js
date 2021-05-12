@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container, Header, Title, Content, Footer, Button, FooterTab, Left, Right, Body, Icon, Text } from 'native-base';
 import { getTheme, StyleProvider } from 'native-base'
 import customVariables from '../theme/variables'
-import Inicio from './inicio'
+import Inicio from './Inicio'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
@@ -12,19 +12,22 @@ import { HeaderBackButton } from '@react-navigation/stack';
 
 function InicoScreen() {
   return (
-    <Inicio></Inicio>
+    <Inicio />
   );
 }
+
 function BuscarScreen() {
   return (
-    <Buscar></Buscar>
+    <Buscar />
   );
 }
+
 function BibliotecaScreen() {
   return (
-    <Biblioteca></Biblioteca>
+    <Biblioteca />
   );
 }
+
 const Tab = createBottomTabNavigator();
 
 export default function Home() {
@@ -48,10 +51,15 @@ export default function Home() {
             return <Ionicons name={iconName} size={size} color={color} />;
           },
         })}
+
         tabBarOptions={{
-          activeTintColor: 'tomato',
+          activeTintColor: '#007aff',
           inactiveTintColor: 'gray',
+          style: {
+            backgroundColor:'black'
+          }
         }}
+      
       >
         <Tab.Screen name="Inicio" component={InicoScreen} options={{ title: 'Inicio', headerStyle: { backgroundColor: "black" }, headerTintColor: "white" }} options={{ headerLeft: null }}></Tab.Screen>
         <Tab.Screen name="Buscar" component={BuscarScreen} options={{ headerShown: false, title: 'Buscar', headerStyle: { backgroundColor: "black" }, headerTintColor: "white" }}></Tab.Screen>
