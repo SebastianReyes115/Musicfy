@@ -25,10 +25,13 @@ export default function inicio(){
           sound.unloadAsync(); }
       : undefined;
   }, [sound]);
-
+async function pauseSound(){
+    await sound.pauseAsync();
+}
   return (
     <View>
       <Button title="Play Sound" onPress={playSound} />
+      <Button title="Pause" onPress={pauseSound}></Button>
     </View>
   )
 }
