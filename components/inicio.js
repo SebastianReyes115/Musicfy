@@ -3,8 +3,16 @@ import { View, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-nat
 import { Container, Header, Title, Content, Right, Body, Icon, Text, Button } from 'native-base';
 import { getTheme, StyleProvider } from 'native-base'
 import customVariables from '../theme/variables'
+import { createStackNavigator } from '@react-navigation/stack'
+import Album from './Album'
 
-export default function Inicio() {
+function AlbumScreen({ navigation }) {
+  return (
+    <Album />
+  )
+}
+
+function InicioScreen({ navigation }) {
   return (
     <StyleProvider style={getTheme(customVariables)}>
       <Container style={styles.container}>
@@ -21,13 +29,13 @@ export default function Inicio() {
         <Content>
           <View style={styles.listado}>
             <View style={styles.listadoItem}>
-              <TouchableOpacity style={styles.button} >
+              <TouchableOpacity onPress={() => navigation.navigate('album')} style={styles.button} >
                 <Text style={styles.textBody}>Canciones que te gustan</Text>
                 <Image source={require('../assets/images/like.png')} style={{ width: 70, height: 70, position: 'absolute', left: 15, top: 10 }} />
               </TouchableOpacity>
             </View>
             <View style={styles.listadoItem}>
-              <TouchableOpacity style={styles.button} >
+              <TouchableOpacity onPress={() => navigation.navigate('album')} style={styles.button} >
                 <Text style={styles.textBody}>Nuevo Album de Gorillaz</Text>
                 <Image source={require('../assets/images/GorillazAlbumn.png')} style={{ width: 70, height: 70, position: 'absolute', left: 15, top: 10 }} />
               </TouchableOpacity>
@@ -41,13 +49,13 @@ export default function Inicio() {
             </View>
           </View>
           <ScrollView horizontal={true} style={{ paddingTop: 25 }}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('album')}>
               <Image source={require('../assets/images/pop.png')} style={{ height: 250, width: 250, marginRight: 20 }} />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('album')}>
               <Image source={require('../assets/images/billiA1.jpg')} style={{ height: 250, width: 250, marginRight: 20 }} />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('album')}>
               <Image source={require('../assets/images/billiA2.jpg')} style={{ height: 250, width: 250, marginRight: 20 }} />
             </TouchableOpacity>
           </ScrollView>
@@ -59,13 +67,13 @@ export default function Inicio() {
             </View>
           </View>
           <ScrollView horizontal={true} style={{ paddingTop: 25 }}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('album')}>
               <Image source={require('../assets/images/bioshockA1.jpg')} style={{ height: 250, width: 250, marginRight: 20 }} />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('album')}>
               <Image source={require('../assets/images/bioshockA2.jpg')} style={{ height: 250, width: 250, marginRight: 20 }} />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('album')}>
               <Image source={require('../assets/images/bioshockA3.jpg')} style={{ height: 250, width: 250, marginRight: 20 }} />
             </TouchableOpacity>
           </ScrollView>
@@ -73,6 +81,17 @@ export default function Inicio() {
       </Container>
     </StyleProvider>
   );
+}
+
+const Stack = createStackNavigator()
+
+export default function InicioNavigation() {
+  return (
+    <Stack.Navigator initialRouteName="inicio">
+      <Stack.Screen name="inicio" component={InicioScreen} options={{ headerShown: false }}></Stack.Screen>
+      <Stack.Screen name="album" component={AlbumScreen} options={{ headerShown: false }}></Stack.Screen>
+    </Stack.Navigator>
+  )
 }
 
 const styles = StyleSheet.create({

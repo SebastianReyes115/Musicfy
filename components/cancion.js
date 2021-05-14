@@ -40,7 +40,7 @@ export default function cancion(){
         <Button title="Pause" onPress={pauseSound}></Button>
         {pauseSong 
         ? <Button title="continuar" onPress={replaySound} ></Button>
-      : <Button></Button>}
+      : <Button title="a"></Button>}
       </View>
     );
 }
