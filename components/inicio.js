@@ -5,6 +5,10 @@ import { getTheme, StyleProvider } from 'native-base'
 import customVariables from '../theme/variables'
 import { createStackNavigator } from '@react-navigation/stack'
 import Album from './Album'
+import Gorillaz from './Artistas/AlbumG'
+import Billie1 from './Artistas/AlbumB1'
+import Billie2 from './Artistas/AlbumB2'
+import Billie3 from './Artistas/AlbumB3'
 
 function AlbumScreen({ navigation }) {
   return (
@@ -35,7 +39,7 @@ function InicioScreen({ navigation }) {
               </TouchableOpacity>
             </View>
             <View style={styles.listadoItem}>
-              <TouchableOpacity onPress={() => navigation.navigate('album')} style={styles.button} >
+              <TouchableOpacity onPress={() => navigation.navigate('gori')} style={styles.button} >
                 <Text style={styles.textBody}>Nuevo Album de Gorillaz</Text>
                 <Image source={require('../assets/images/GorillazAlbumn.png')} style={{ width: 70, height: 70, position: 'absolute', left: 15, top: 10 }} />
               </TouchableOpacity>
@@ -49,13 +53,13 @@ function InicioScreen({ navigation }) {
             </View>
           </View>
           <ScrollView horizontal={true} style={{ paddingTop: 25 }}>
-            <TouchableOpacity onPress={() => navigation.navigate('album')}>
+            <TouchableOpacity onPress={() => navigation.navigate('b3')}>
               <Image source={require('../assets/images/pop.png')} style={{ height: 250, width: 250, marginRight: 20 }} />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('album')}>
+            <TouchableOpacity onPress={() => navigation.navigate('b1')}>
               <Image source={require('../assets/images/billiA1.jpg')} style={{ height: 250, width: 250, marginRight: 20 }} />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('album')}>
+            <TouchableOpacity onPress={() => navigation.navigate('b2')}>
               <Image source={require('../assets/images/billiA2.jpg')} style={{ height: 250, width: 250, marginRight: 20 }} />
             </TouchableOpacity>
           </ScrollView>
@@ -90,6 +94,10 @@ export default function InicioNavigation() {
     <Stack.Navigator initialRouteName="inicio">
       <Stack.Screen name="inicio" component={InicioScreen} options={{ headerShown: false }}></Stack.Screen>
       <Stack.Screen name="album" component={AlbumScreen} options={{ headerShown: false }}></Stack.Screen>
+      <Stack.Screen name="gori" component={Gorillaz} options={{ headerShown: false }}></Stack.Screen>
+      <Stack.Screen name="b1" component={Billie1} options={{ headerShown: false }}></Stack.Screen>
+      <Stack.Screen name="b2" component={Billie2} options={{ headerShown: false }}></Stack.Screen>
+      <Stack.Screen name="b3" component={Billie3} options={{ headerShown: false }}></Stack.Screen>
     </Stack.Navigator>
   )
 }

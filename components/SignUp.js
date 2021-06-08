@@ -4,8 +4,17 @@ import { getTheme, StyleProvider } from 'native-base'
 import { Container, Header, Content, Form, Input, Label, Left, Icon, Body, Title, Right, Text, View, Item } from 'native-base';
 import customVariables from '../theme/variables'
 import Axios from 'axios'
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Login from './Login';
 
-export default function SignUp() {
+function LoginScreen({ navigation }) {
+    return (
+        <Login />
+    )
+}
+
+function RegistroScreen({ navigation }) {
     const [nombre, setName] = useState('')
     const [userName, setUserName] = useState('')
     const [email, setEmail] = useState('')
@@ -13,7 +22,7 @@ export default function SignUp() {
 
     const handleSubmit = async () => {
         let formData = new FormData();
-        formData.append('signup', 'signupQuery')
+        formData.append('option', 'signupQuery')
         formData.append('nombre', nombre)
         formData.append('userName', userName)
         formData.append('email', email)
@@ -29,8 +38,9 @@ export default function SignUp() {
                 if (response.data.insert == true) {
                     alert("Usuario Registrado")
                     console.log('Response Login', response)
+                    navigation.goBack()
                 } else {
-                    alert("Datos Incorrectos");
+                    alert("Error");
                 }
             })
             .catch(error => {
@@ -47,21 +57,21 @@ export default function SignUp() {
                         <Label style={styles.label}>
                             Nombre (s)
                         </Label>
-                        <Input style={styles.input} placeholder='Tito Hrz' value={nombre} onChangeText={setName}/>
+                        <Input style={styles.input} placeholder='Tito Hrz' value={nombre} onChangeText={setName} />
                         <Label />
                         <Label style={styles.label}>
                             Nombre de Usuario
                         </Label>
-                        <Input style={styles.input} placeholder='UserName123' value={userName} onChangeText={setUserName}/>
+                        <Input style={styles.input} placeholder='UserName123' value={userName} onChangeText={setUserName} />
                         <Label />
                         <Label style={styles.label}>
                             e-mail
                         </Label>
-                        <Input style={styles.input} placeholder='tito@example.com' value={email} onChangeText={setEmail}/>
+                        <Input style={styles.input} placeholder='tito@example.com' value={email} onChangeText={setEmail} />
                         <Label style={styles.label}>
                             Contraseña
                         </Label>
-                        <Input secureTextEntry={true} style={styles.input} placeholder='**********' value={contrasena} onChangeText={setContrasena}/>
+                        <Input secureTextEntry={true} style={styles.input} placeholder='**********' value={contrasena} onChangeText={setContrasena} />
                         <Label />
                         <Label />
                         <Button color='orange' title='Registrarse' onPress={handleSubmit} />
@@ -70,6 +80,17 @@ export default function SignUp() {
                 </Content>
             </Container>
         </StyleProvider>
+    )
+}
+
+const Stack = createStackNavigator()
+
+export default function SignUp() {
+    return (
+        <Stack.Navigator initialRouteName="registro">
+            <Stack.Screen name="registro" component={RegistroScreen} options={{ headerShown: false }}></Stack.Screen>
+            <Stack.Screen name="logini" component={LoginScreen} options={{ headerShown: false }}></Stack.Screen>
+        </Stack.Navigator>
     )
 }
 
